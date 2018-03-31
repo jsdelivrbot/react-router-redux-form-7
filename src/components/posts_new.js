@@ -18,6 +18,7 @@ class PostsNew extends Component {
                     type="text"
                     {...field.input}
                 />
+                {field.meta.error}
             </div>
         );
     }
@@ -31,8 +32,8 @@ class PostsNew extends Component {
                     component={ this.renderField }
                 />
                 <Field
-                    label="Tags"
-                    name="tags"
+                    label="Categories"
+                    name="categories"
                     component={ this.renderField }
                 />
                 <Field
@@ -45,11 +46,37 @@ class PostsNew extends Component {
     }
 }
 
+/*
+    Validation function structure. 
+    It must an object (errors), and if it has any value, redux form will consider this form invalid.
+    Note that is needed to use the same Field Name, found into our render/form component. 
+
+*/
+function validate(values) {
+    const errors = {};
+
+    // validate values
+    if (!values.title) {
+        errors.title = "Enter a title!";
+    }
+
+    if (!values.categories) {
+        errors.categories = "Enter some categories!";
+    }
+
+    if (!values.content) {
+        errors.content = "Enter some content!";
+    }
+
+    return errors;
+}
+
 
 /*
     reduxForm({...}) - it wires our component to the formReducer, configured 
     into our ../reducers/index.js
 */
 export default reduxForm({
+    validate: validate,
     form: 'PostsNewForm'
 })(PostsNew);
