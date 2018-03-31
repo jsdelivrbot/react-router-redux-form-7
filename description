@@ -1,0 +1,17 @@
+Simple Blog Application
+
+React Router Redux Form
+
+	Posts API
+
+
+		Web Page <- Ajax Requests -> Blog Post API
+
+		The Blog Post API will be our backend, but it isn't developed here. We are using an API from Redux found in https://reduxblog.herokuapp.com/.
+
+
+
+
+
+This application was created based on Udemy course of Stephen Grider just to improve my own knowledges. 
+
