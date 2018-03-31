@@ -7,7 +7,10 @@ import { Link } from 'react-router-dom';
             to the Redux Store, that means, to the reducer we have configured at ../reducers/index.js.
 */
 import { Field, reduxForm } from 'redux-form';
+// Used to wire Action Creators to the component.
+import { connect } from 'react-redux';
 
+import { createPost } from '../actions';
 
 class PostsNew extends Component {
     renderField(field) {
@@ -31,7 +34,7 @@ class PostsNew extends Component {
     }
 
     onSubmit(values) {
-        console.log(values);
+        this.props.createPost(values);
     }
 
     render () {
@@ -116,10 +119,18 @@ function validate(values) {
 
 
 /*
+    Take a look, above we are wiring two react helpers (reduxForm and connect) to this 
+    component. 
+
     reduxForm({...}) - it wires our component to the formReducer, configured 
     into our ../reducers/index.js
 */
-export default reduxForm({
-    validate: validate,
-    form: 'PostsNewForm'
-})(PostsNew);
+export default reduxForm(
+    {
+        validate: validate,
+        form: 'PostsNewForm'
+    }
+)(
+    // wiring our action creator creatPost to this component. 
+    connect(null, { createPost } )(PostsNew)
+);

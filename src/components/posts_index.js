@@ -1,7 +1,10 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
+// connect - Used to wire Action Creators to the component.
 import { connect } from 'react-redux';
+// Link - Component used to navegate between components through react-router-dom       
 import { Link } from 'react-router-dom';
+
 import { fetchPosts } from '../actions';
 
 class PostsIndex extends Component {
@@ -53,4 +56,9 @@ function mapStateToProps(state) {
 
 // here we are wiring the featchPosts Action Creator to this component (PostsIndex it self)
 // and using our mapStateToProps to add the posts data to the Component State.
-export default connect( mapStateToProps, { fetchPosts } )(PostsIndex);
+export default connect( 
+    mapStateToProps, 
+    { 
+        fetchPosts 
+    }
+)(PostsIndex);
