@@ -23,9 +23,43 @@ class PostsNew extends Component {
         );
     }
 
+    onSubmit(values) {
+        console.log(values);
+    }
+
     render () {
+        /*
+            Here we're telling to reduxForm what it needs to 'check' when it is 
+            executing the Handle Submit.
+        */
+        const { handleSubmit } = this.props;
+
         return (
-            <form>
+
+            /*
+                form onSubmit
+                    It is a form function to enable submits into the form. 
+                    This function, its contents, will be executed when the user
+                    clicks on Submit button.
+            
+                handleSubmit
+                    It will run the objects wired by the reduxForm to this component, 
+                    and if it is everything ok, it will continue calling the method 
+                    passed by parameter (this.onSubmit.bind(this)). 
+                    Take a look that we are wiring two objects to this component through
+                    reduxForm: validate and form. 
+                    So, reduxForm will execute our validate function. 
+
+                    >>> handleSubmite won't submit anything, it just a particular part of 
+                    reduxForm submit action. <<<
+                
+                this.onSubmit.bind(this) 
+                    It is our particular method executed when the user clicks on the 
+                    Submit button. It is called by handleSubmit, as we have wrote.
+
+            */
+
+            <form onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
                 <Field
                     label="Title"
                     name="title"
@@ -41,6 +75,7 @@ class PostsNew extends Component {
                     name="content"
                     component={ this.renderField }
                 />
+                <button type="submit" className="btn btn-primary">Submit</button>
             </form>
         );
     }
