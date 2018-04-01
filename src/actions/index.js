@@ -38,8 +38,16 @@ export function fetchPosts() {
  * 
  * @param {*} values 
  */
-export function createPost(values) {
-    const request = axios.post(`${ROOT_URL}/posts${API_KEY}`, values);
+export function createPost(values, callback) {
+    /**
+     * Callback navigation 
+     * Here, we are calling a callback funtion, passed as a parameter to create post, after 
+     * axios.post has been properly executed. 
+     * We are doing it using a promise.
+     * Take a look on /components/posts_new.js # onSubmit method.
+     */
+    const request = axios.post(`${ROOT_URL}/posts${API_KEY}`, values)
+        .then(() => callback());
     
     return {
         type: CREATE_POST,

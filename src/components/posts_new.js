@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+// Link -   Component used to navegate between components through react-router-dom       
+//          it generates an anchor tag into the html dom.
 import { Link } from 'react-router-dom';
 /*
     redux-form
@@ -34,7 +36,25 @@ class PostsNew extends Component {
     }
 
     onSubmit(values) {
-        this.props.createPost(values);
+        /*  
+            Callback navigation
+
+            This configuration bellow allows navegation after callbacks. 
+            
+            The path '/' is just a path configured into the Route configurations, at
+            /src/index.js. 
+
+            That means, after 'onSubmit' has called the Action Creator createPost, 
+            and it has been commited as expected, so the system must navigate to the
+            Post Index page.
+            
+            Note that to have this navigation performed only after the createPost has been 
+            properly executed, we must pass it as a callback. Check reducer_post
+
+        */
+        this.props.createPost(values, () => { 
+            this.props.history.push('/');
+         });
     }
 
     render () {
