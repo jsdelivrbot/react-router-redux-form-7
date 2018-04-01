@@ -2,7 +2,8 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 // connect - Used to wire Action Creators to the component.
 import { connect } from 'react-redux';
-// Link - Component used to navegate between components through react-router-dom       
+// Link -   Component used to navegate between components through react-router-dom       
+//          it generates an anchor tag into the html dom.
 import { Link } from 'react-router-dom';
 
 import { fetchPosts } from '../actions';

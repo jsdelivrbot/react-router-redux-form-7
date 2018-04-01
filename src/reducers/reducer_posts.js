@@ -1,8 +1,15 @@
 import _ from 'lodash';
-import { FETCH_POSTS, CREATE_POST } from '../actions';
+import { FETCH_POSTS, FETCH_POST } from '../actions';
 
 export default function (state = {}, action) {
     switch (action.type) {
+        case FETCH_POST:
+            const post = action.payload.data;
+            const newState = {...state};
+            newState[post.id] = post;
+    
+            return newState;
+        
         case FETCH_POSTS:
             // Adjusting the payload to load State with a better structure, 
             // where we will have 
