@@ -4,11 +4,13 @@ import { FETCH_POSTS, FETCH_POST } from '../actions';
 export default function (state = {}, action) {
     switch (action.type) {
         case FETCH_POST:
-            const post = action.payload.data;
-            const newState = {...state};
-            newState[post.id] = post;
-    
-            return newState;
+            // const post = action.payload.data;
+            // const newState = {...state};
+            // newState[post.id] = post;
+            // return newState;
+
+            // This line bellow does the same thing as the four above.
+            return { ...state, [action.payload.data.id] : action.payload.data }
         
         case FETCH_POSTS:
             // Adjusting the payload to load State with a better structure, 

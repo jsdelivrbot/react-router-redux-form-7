@@ -24,7 +24,6 @@ class PostsShow extends Component {
 
     onDeleteClick() {
         const { id } = this.props.match.params;
-
         this.props.deletePost(id, () => {
             this.props.history.push('/');
         });
